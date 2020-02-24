@@ -11,13 +11,13 @@
     <Authors>Aragas</Authors>
     <Company>Aragas</Company>
     <Copyright>2020 Aragas</Copyright>
-    <RepositoryUrl>https://github.com/Aragas/Aragas.QServer.Metrics</RepositoryUrl>
+    <RepositoryUrl>https://github.com/Aragas/Aragas.QServer.NetworkBus</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <PackageDescription>Metrics library.</PackageDescription>
     <PackageIcon>spiral.png</PackageIcon>
-    <PackageIconUrl>https://github.com/Aragas/Aragas.QServer.Metrics/raw/master/spiral.png</PackageIconUrl>
-    <PackageProjectUrl>https://github.com/Aragas/Aragas.QServer.Metrics</PackageProjectUrl>
+    <PackageIconUrl>https://github.com/Aragas/Aragas.QServer.NetworkBus/raw/master/spiral.png</PackageIconUrl>
+    <PackageProjectUrl>https://github.com/Aragas/Aragas.QServer.NetworkBus</PackageProjectUrl>
   </PropertyGroup>
 
   <ItemGroup>
