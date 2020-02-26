@@ -20,7 +20,8 @@ namespace Aragas.QServer.NetworkBus
     [SuppressMessage("Design", "CA1063:Implement IDisposable Correctly")]
     public class STANBus : BaseNATSNetworkBus, INetworkBus
     {
-        protected readonly IStanConnection Connection;
+        private readonly Lazy<IStanConnection> _connection;
+        protected IStanConnection Connection => _connection.Value;
 
         public STANBus(IOptions<STANOptions> options)
         {
@@ -28,7 +29,7 @@ namespace Aragas.QServer.NetworkBus
             stanOptions.ConnectTimeout = (int) TimeSpan.FromMilliseconds(10000).TotalMilliseconds;
             stanOptions.NatsURL = options.Value.Url;
 
-            Connection = new StanConnectionFactory().CreateConnection(options.Value.ClusterID, options.Value.ClientID, stanOptions);
+            _connection = new Lazy<IStanConnection>(new StanConnectionFactory().CreateConnection(options.Value.ClusterID, options.Value.ClientID, stanOptions));
         }
 
         public void Publish<TMessage>(TMessage message, Guid? referenceId = null) where TMessage : notnull, IMessage =>

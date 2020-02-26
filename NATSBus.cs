@@ -20,7 +20,8 @@ namespace Aragas.QServer.NetworkBus
     [SuppressMessage("Design", "CA1063:Implement IDisposable Correctly")]
     public class NATSBus : BaseNATSNetworkBus, INetworkBus
     {
-        protected readonly IConnection Connection;
+        private readonly Lazy<IConnection> _connection;
+        protected IConnection Connection => _connection.Value;
 
         public NATSBus(IOptions<NATSOptions> options)
         {
@@ -30,7 +31,7 @@ namespace Aragas.QServer.NetworkBus
             natsOptions.MaxReconnect = NATS.Client.Options.ReconnectForever;
             natsOptions.Url = options.Value.Url;
 
-            Connection = new ConnectionFactory().CreateConnection(natsOptions);
+            _connection = new Lazy<IConnection>(new ConnectionFactory().CreateConnection(natsOptions));
         }
 
         public void Publish<TMessage>(TMessage message, Guid? referenceId = null) where TMessage : notnull, IMessage =>
