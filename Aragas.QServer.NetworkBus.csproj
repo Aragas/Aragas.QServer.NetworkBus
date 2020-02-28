@@ -35,6 +35,9 @@
   <ItemGroup>
     <ProjectReference Include="$(SolutionDir)\Aragas.QServer.Metrics\Aragas.QServer.Metrics.csproj" Condition="Exists('$(SolutionDir)\Aragas.QServer.Metrics\Aragas.QServer.Metrics.csproj')"  />
     <PackageReference Include="Aragas.QServer.Metrics" Version="*" Condition="!Exists('$(SolutionDir)\Aragas.QServer.Metrics\Aragas.QServer.Metrics.csproj')"/>
+
+    <ProjectReference Include="$(SolutionDir)\Aragas.QServer.Health\Aragas.QServer.Health.csproj" Condition="Exists('$(SolutionDir)\Aragas.QServer.Health\Aragas.QServer.Health.csproj')"  />
+    <PackageReference Include="Aragas.QServer.Health" Version="*" Condition="!Exists('$(SolutionDir)\Aragas.QServer.Health\Aragas.QServer.Health.csproj')"/>
   </ItemGroup>
 
   <ItemGroup>
