@@ -10,14 +10,14 @@ namespace Microsoft.Extensions.Hosting
 {
     public static class HostBuilderExtensions
     {
-        public static IHostBuilder UseServiceOptions(this IHostBuilder hostBuilder, Guid uid) =>
-            hostBuilder.ConfigureServices((hostContext, services) =>
+        public static IHostBuilder UseServiceOptions(this IHostBuilder hostBuilder, Guid uid) => hostBuilder
+            .ConfigureServices((hostContext, services) =>
             {
                 services.Configure<ServiceOptions>(o => o.Uid = uid);
             });
 
-        public static IHostBuilder UseNATSNetworkBus(this IHostBuilder hostBuilder) =>
-            hostBuilder.ConfigureServices((hostContext, services) =>
+        public static IHostBuilder UseNATSNetworkBus(this IHostBuilder hostBuilder) => hostBuilder
+            .ConfigureServices((hostContext, services) =>
             {
                 services.Configure<NATSOptions>(hostContext.Configuration.GetSection("NATS"));
 
@@ -26,8 +26,8 @@ namespace Microsoft.Extensions.Hosting
                 services.AddSingleton<SubscriptionStorage>();
             });
 
-        public static IHostBuilder UseSTANNetworkBus(this IHostBuilder hostBuilder) =>
-            hostBuilder.ConfigureServices((hostContext, services) =>
+        public static IHostBuilder UseSTANNetworkBus(this IHostBuilder hostBuilder) => hostBuilder
+            .ConfigureServices((hostContext, services) =>
             {
                 services.Configure<STANOptions>(hostContext.Configuration.GetSection("STAN"));
 
