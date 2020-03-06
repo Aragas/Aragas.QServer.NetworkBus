@@ -6,6 +6,19 @@ namespace Aragas.QServer.NetworkBus
 {
     public interface INetworkBus : IDisposable
     {
+        protected static string GetSubject(IMessage message, Guid? referenceId = null)
+        {
+            var subject = message.Name;
+            if (referenceId != null)
+                subject += $"-{referenceId}";
+            return subject.ToLowerInvariant();
+        }
+        protected static string GetSubject<TMessage>() where TMessage : notnull, IMessage, new() =>
+            GetSubject(new TMessage());
+        protected static string GetSubject<TMessage>(Guid? referenceId) where TMessage : notnull, IMessage, new() =>
+            GetSubject(new TMessage(), referenceId);
+
+
         void Publish<TMessage>(TMessage message, Guid? referenceId = null)
             where TMessage : notnull, IMessage;
         TMessageResponse? PublishAndWaitForReply<TMessageRequest, TMessageResponse>(TMessageRequest message, Guid? referenceId = null, int timeout = -1)
